@@ -28,8 +28,8 @@ function kernel_ez(hy, ez, imp0, time)
         if i == 1
             ez[time, i] = exp(-(time-30.) * (time-30.) / 100.)
         elseif i == size(ez)[2]
-            ez[time, i] = ez[time-1, i] * (1 - imp0/3imp0) - hy[time, i-1] * 2imp0
-            ez[time, i] = ez[time, i] / (1 + imp0/3imp0)
+            ez[time, i] = ez[time-1, i] * (1 - imp0/imp) - hy[time, i-1] * 2imp0
+            ez[time, i] = ez[time, i] / (1 + imp0/imp)
         else
             @inbounds ez[time, i] = ez[time-1, i] + (hy[time, i] - hy[time, i-1]) * imp0
         end
@@ -39,7 +39,7 @@ end
 
 function calculate_rows(time)
     @cuda threads=number_of_threads kernel_hy(hy, ez, imp0, time)
-    @cuda threads=number_of_threads kernel_ez(hy, ez, imp0, time)
+    @cuda threads=number_of_threads kernel_ez(hy, ez, imp0, imp, time)
 end
 
 function FDTD()
