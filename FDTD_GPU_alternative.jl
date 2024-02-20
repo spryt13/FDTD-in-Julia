@@ -27,7 +27,7 @@ function kernel_ez(hy, ez, imp0, time)
     for i = index:stride:size(ez)[2]
         if i == 1
             ez[time, i] = exp(-(time-30.) * (time-30.) / 100.)
-        elseif i == 200
+        elseif i == size(ez)[2]
             ez[time, i] = ez[time-1, i] * (1 - imp0/3imp0) - hy[time, i-1] * 2imp0
             ez[time, i] = ez[time, i] / (1 + imp0/3imp0)
         else
