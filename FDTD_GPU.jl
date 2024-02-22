@@ -45,8 +45,8 @@ function calculate_rows(time)
 end
 
 function save_FDTD(time)
-    series_ez[time, :] = ez
-    series_hy[time, :] = hy
+    series_ez[time, :] = Array(ez)
+    series_hy[time, :] = Array(hy)
 end
 
 function FDTD()
