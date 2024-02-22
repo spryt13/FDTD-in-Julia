@@ -20,7 +20,7 @@ function kernel_hy(hy, ez, imp0, time)
     return nothing
 end
 
-function kernel_ez(hy, ez, imp0, time)
+function kernel_ez(hy, ez, imp0, imp, time)
     index = threadIdx().x;
     stride = blockDim().x;
     
