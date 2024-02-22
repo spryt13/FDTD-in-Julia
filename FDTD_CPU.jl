@@ -14,11 +14,11 @@ hy = zeros(size-1);
 series_ez = zeros(max_time, size);
 series_hy = zeros(max_time, size);
 
-function count_hy(count, imp0) # calculation of electric field
+function count_hy(count, imp0) # calculation of magnetic field
     hy[count] = hy[count] + (ez[count+1] - ez[count]) / imp0
 end
 
-function count_ez(count, imp0) # calculation of magnetic field
+function count_ez(count, imp0) # calculation of electric field
     ez[count] = ez[count] + (hy[count] - hy[count-1]) * imp0
 end
 
